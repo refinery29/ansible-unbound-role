@@ -68,5 +68,5 @@
     line: '#    auto-trust-anchor-file: "/var/lib/unbound/root.key"'
     backrefs: yes
   notify: restart unbound
-  when: disable-dnssec is defined
+  when: disable_dnssec is defined
 
