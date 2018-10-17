@@ -60,3 +60,13 @@
     dest: /etc/unbound/unbound.conf.d/{{ item | basename | replace('.j2', '') }}
   with_items: "{{ unbound_custom_configuration_files }}"
   notify: restart unbound
+
+- name: disable dnssec
+  lineinfile:
+    path: /etc/unbound/unbound.conf.d/root-auto-trust-anchor-file.conf
+    regexp: '^(?!.*(#)).*auto-trust-anchor-file'
+    line: '#    auto-trust-anchor-file: "/var/lib/unbound/root.key"'
+    backrefs: yes
+  notify: restart unbound
+  when: disable-dnssec is defined
+
