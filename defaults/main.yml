@@ -1,3 +1,2 @@
 ---
 unbound_custom_configuration_files: []
-disable_dnssec: 'False'
